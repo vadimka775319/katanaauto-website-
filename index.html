@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katana Auto — Шины и диски из Японии | Авто с аукционов</title>
+    <meta name="description" content="Оригинальные шины и диски из Японии. Авто с аукционов Японии, Кореи и Китая. 11 лет на рынке.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header__inner">
+            <div class="header__brand">
+                <img id="company-logo" src="" alt="Katana Auto" class="header__company-img" style="display:none;" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <a href="#" class="logo">
+                    <span class="logo__text">Katana</span>
+                    <span class="logo__accent">Auto</span>
+                </a>
+            </div>
+            <nav class="nav" aria-label="Основная навигация">
+                <button class="nav__toggle" aria-label="Открыть меню" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav__list">
+                    <li><a href="#about" class="nav__link">О компании</a></li>
+                    <li><a href="#tires" class="nav__link">Шины</a></li>
+                    <li><a href="#wheels" class="nav__link">Диски</a></li>
+                    <li><a href="#why-us" class="nav__link">Почему мы</a></li>
+                    <li><a href="#reviews" class="nav__link">Отзывы</a></li>
+                    <li><a href="#contacts" class="nav__link">Как нас найти</a></li>
+                </ul>
+            </nav>
+            <a href="tel:+79086510857" class="header__phone" aria-label="Позвонить">
+                <svg class="header__phone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                +7 908 651 08 57
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero" id="about">
+            <div class="hero__bg"></div>
+            <div class="container hero__inner">
+                <p class="hero__label">Наши направления</p>
+                <h1 class="hero__title">Оригинальные шины и диски из Японии</h1>
+                <p class="hero__subtitle">Японское качество. Быстрая доставка до ТК.</p>
+                <ul class="hero__features">
+                    <li>Качественная упаковка при отправке в ТК (Не требуется обрешетка)</li>
+                    <li>Шины made in Japan износ не более 10%</li>
+                    <li>Оригинальные диски (Toyota, Honda, Nissan, Mazda, Mitsubishi)</li>
+                    <li>Товар для внутреннего рынка Японии JDM</li>
+                </ul>
+                <a href="https://baza.drom.ru/user/KatanaAuto38/wheel/#center=131.89228990478512%2C43.11365458128561&zoom=13" target="_blank" rel="noopener" class="btn btn--primary">Перейти в каталог</a>
+            </div>
+        </section>
+
+        <!-- Auto section -->
+        <section class="auto-section">
+            <div class="container auto-section__inner">
+                <div class="auto-section__content">
+                    <h2 class="section-title">Авто с аукционов Японии, Кореи и Китая</h2>
+                    <p class="auto-section__dealer">Свой дилер в г. Токио, Япония</p>
+                    <ul class="auto-section__list">
+                        <li>Сопровождение/поддержка на каждом этапе сделки</li>
+                        <li>Досконально знаем весь модельный ряд и все комплектации автомобилей, поможем с выбором авто</li>
+                        <li>100% страховка авто при отправке автовозом</li>
+                        <li>Отвечаем за авто до момента выдачи клиенту</li>
+                    </ul>
+                </div>
+                <div class="auto-section__visual">
+                    <div class="auto-section__cards">
+                        <a href="#tires" class="card-link">
+                            <img src="images/tires.jpg" alt="Шины" class="card-link__img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <span class="card-link__placeholder" style="display:none;">🛞</span>
+                            <span class="card-link__text">Шины</span>
+                        </a>
+                        <a href="#wheels" class="card-link">
+                            <img src="images/wheels.jpg" alt="Диски" class="card-link__img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <span class="card-link__placeholder" style="display:none;">⭕</span>
+                            <span class="card-link__text">Диски</span>
+                        </a>
+                    </div>
+                    <div class="wheel-showcase" id="wheel-showcase">
+                        <!-- Выставочные картинки колес загружаются через админку -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why us -->
+        <section class="why-us" id="why-us">
+            <div class="container">
+                <h2 class="section-title section-title--center">Почему выбирают именно нас</h2>
+                <p class="why-us__years">11 лет на рынке шин и дисков</p>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat__number" data-count="22000">0</span>
+                        <span class="stat__label">проданных товаров за все время</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__number" data-count="627">0</span>
+                        <span class="stat__label">положительных отзывов на Drom.ru</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__number" data-count="5">0</span>
+                        <span class="stat__label">баллов в 2ГИС</span>
+                    </div>
+                </div>
+                <div class="benefits">
+                    <div class="benefit-card">
+                        <div class="benefit-card__icon">🇯🇵</div>
+                        <h3 class="benefit-card__title">Шины made in Japan</h3>
+                        <p class="benefit-card__text">95% нашего товара — производство Япония. Минимальный процент износа, отличное качество и цена делает покупку наших шин выгоднее, чем приобретение шин сделанных в Китае.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-card__icon">🛞</div>
+                        <h3 class="benefit-card__title">Оригинальные диски из Японии</h3>
+                        <p class="benefit-card__text">Большинство нашего ассортимента составляет оригинальные диски Японского и Немецкого производства: Toyota, Honda, Nissan, Mazda, Mitsubishi. Это именно те диски, на которых машина сходит с конвейера. Все диски сертифицированы по Японским стандартам JAWA, JW, JWT.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-card__icon">📦</div>
+                        <h3 class="benefit-card__title">Доставка и Упаковка</h3>
+                        <p class="benefit-card__text">Наша упаковка позволяет избежать затрат на обрешетку. Упаковывается в картонную «броню». Доставка по всей России транспортными компаниями: Энергия, СДЭК, ПЭК, Деловые линии.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews -->
+        <section class="reviews" id="reviews">
+            <div class="container">
+                <h2 class="section-title section-title--center section-title--light">Отзывы наших клиентов</h2>
+                <div class="reviews__slider" id="reviews-slider">
+                    <!-- Отзывы загружаются через data.js / админку -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Catalog -->
+        <section class="catalog" id="catalog">
+            <span id="tires" class="anchor"></span>
+            <span id="wheels" class="anchor"></span>
+            <div class="container">
+                <h2 class="section-title section-title--center">Каталог товаров</h2>
+                <div class="catalog__filters">
+                    <select id="filter-category" class="filter-select">
+                        <option value="all">Все категории</option>
+                        <option value="tires">Шины</option>
+                        <option value="wheels">Диски</option>
+                    </select>
+                    <select id="filter-brand" class="filter-select">
+                        <option value="all">Все бренды</option>
+                        <option value="bridgestone">Bridgestone</option>
+                        <option value="yokohama">Yokohama</option>
+                        <option value="toyota">Toyota</option>
+                        <option value="honda">Honda</option>
+                        <option value="nissan">Nissan</option>
+                        <option value="mazda">Mazda</option>
+                        <option value="mitsubishi">Mitsubishi</option>
+                    </select>
+                </div>
+                <div class="catalog__grid" id="catalog-grid">
+                    <!-- Products loaded via JS -->
+                </div>
+                <p class="catalog__empty" id="catalog-empty" style="display: none;">Не нашли товары по вашим настройкам</p>
+                <p class="catalog__drom">
+                    <a href="https://baza.drom.ru/user/KatanaAuto38/wheel/#center=131.89228990478512%2C43.11365458128561&zoom=13" target="_blank" rel="noopener" class="btn btn--primary">Смотреть полный каталог на Drom</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- News -->
+        <section class="news">
+            <div class="container">
+                <h2 class="section-title section-title--center">Новости</h2>
+                <div class="news__grid">
+                    <article class="news-card">
+                        <div class="news-card__date">Февраль 2025</div>
+                        <h3 class="news-card__title">Новое поступление дисков Toyota и Honda</h3>
+                        <p class="news-card__text">В каталог добавлены оригинальные диски для популярных моделей. Следите за обновлениями.</p>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-card__date">Январь 2025</div>
+                        <h3 class="news-card__title">Расширение ассортимента шин</h3>
+                        <p class="news-card__text">Поступили шины Bridgestone и Yokohama made in Japan с минимальным износом.</p>
+                    </article>
+                    <article class="news-card">
+                        <div class="news-card__date">Декабрь 2024</div>
+                        <h3 class="news-card__title">11 лет на рынке!</h3>
+                        <p class="news-card__text">Благодарим всех клиентов за доверие. Продолжаем радовать качественным товаром.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacts -->
+        <section class="contacts" id="contacts">
+            <div class="container contacts__inner">
+                <h2 class="section-title section-title--center section-title--light">Как нас найти</h2>
+                <div class="contacts__content">
+                    <div class="contacts__info">
+                        <p class="contacts__address">г. Иркутск, ул. Дорожная 73/6</p>
+                        <p class="contacts__item">
+                            <span class="contacts__label">E-mail:</span>
+                            <a href="mailto:katanaauto@gmail.com">katanaauto@gmail.com</a>
+                        </p>
+                        <p class="contacts__item">
+                            <span class="contacts__label">Телефон отдела продаж:</span>
+                            <a href="tel:+79086510857" class="contacts__phone">+7 908 651 08 57</a>
+                        </p>
+                        <p class="contacts__note">Звонок бесплатный по России</p>
+                    </div>
+                    <div class="contacts__map">
+                        <div class="map-placeholder">
+                            <p>Магазин дисков и шин</p>
+                            <p>г. Иркутск, ул. Дорожная 73/6</p>
+                            <a href="https://yandex.ru/maps/?text=Иркутск+Дорожная+73" target="_blank" rel="noopener" class="map-link">Открыть в Яндекс.Картах</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <p class="footer__text">Магазин дисков и шин, г. Иркутск, ул. Дорожная 73/6</p>
+            <a href="tel:+79086510857" class="footer__phone">+7 908 651 08 57</a>
+            <p class="footer__privacy">Политика конфиденциальности</p>
+            <a href="admin.html" class="footer__admin">Админ</a>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

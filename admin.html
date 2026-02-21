@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель — Katana Auto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Manrope', sans-serif; background: #0c1222; color: #f1f5f9; min-height: 100vh; padding: 2rem; }
+        .admin { max-width: 800px; margin: 0 auto; }
+        h1 { color: #f59e0b; margin-bottom: 2rem; }
+        h2 { font-size: 1.25rem; margin: 2rem 0 1rem; color: #94a3b8; }
+        .section { background: #151d33; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(148,163,184,0.15); }
+        label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; }
+        input, textarea, select { width: 100%; padding: 10px 14px; margin-bottom: 1rem; background: #1a2442; border: 1px solid rgba(148,163,184,0.2); border-radius: 8px; color: #f1f5f9; font-family: inherit; }
+        textarea { min-height: 80px; }
+        button { background: #f59e0b; color: #0c1222; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; font-family: inherit; }
+        button:hover { background: #fbbf24; }
+        .btn-secondary { background: #1a2442; color: #f1f5f9; margin-left: 0.5rem; }
+        .btn-secondary:hover { background: #252d4a; }
+        .item { background: #1a2442; padding: 1rem; border-radius: 8px; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .item-info { flex: 1; }
+        .item-actions button { padding: 6px 12px; font-size: 0.9rem; margin-left: 0.25rem; }
+        .preview-img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; margin-right: 1rem; }
+        .back-link { display: inline-block; color: #f59e0b; margin-bottom: 1rem; text-decoration: none; }
+        .back-link:hover { text-decoration: underline; }
+        .note { font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; }
+        .login-screen { max-width: 360px; margin: 4rem auto; text-align: center; }
+        .login-screen h1 { margin-bottom: 1rem; }
+        .login-screen input { margin-bottom: 1rem; }
+        .login-error { color: #ef4444; font-size: 0.9rem; margin-top: 0.5rem; display: none; }
+    </style>
+</head>
+<body>
+    <div id="login-screen" class="login-screen section">
+        <h1>Вход в админку</h1>
+        <form id="login-form">
+            <input type="password" id="admin-password" placeholder="Пароль" required autocomplete="current-password">
+            <p class="login-error" id="login-error">Неверный пароль</p>
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+
+    <div id="admin-panel" class="admin" style="display:none;">
+        <a href="index.html" class="back-link">← Назад на сайт</a>
+        <a href="#" class="back-link" id="logout-link" style="margin-left:1rem;">Выйти</a>
+        <h1>Админ-панель Katana Auto</h1>
+
+        <div class="section">
+            <h2>Логотип (шапка)</h2>
+            <form id="form-logo">
+                <label>Загрузить логотип</label>
+                <input type="file" name="logo" accept="image/*">
+                <p class="note">PNG с прозрачным фоном. Рекомендуемый размер: 240×96 px (или крупнее). Цвета: белый или оранжевый под тёмный фон.</p>
+                <button type="submit">Установить логотип</button>
+            </form>
+            <p id="logo-status" class="note" style="margin-top:1rem;"></p>
+        </div>
+
+        <div class="section">
+            <h2>Фон блока «Наши направления» (hero)</h2>
+            <form id="form-hero-bg">
+                <label>Загрузить картинку для фона</label>
+                <input type="file" name="bg" accept="image/*">
+                <p class="note">Рекомендуемый размер: 1920×1080 px</p>
+                <button type="submit">Установить фон</button>
+            </form>
+            <p id="hero-bg-status" class="note" style="margin-top:1rem;"></p>
+        </div>
+
+        <div class="section">
+            <h2>Добавить отзыв</h2>
+            <form id="form-review">
+                <label>Текст отзыва</label>
+                <textarea name="text" required placeholder="Текст отзыва..."></textarea>
+                <label>Автор</label>
+                <input type="text" name="author" placeholder="Имя или «Клиент с Drom.ru»" required>
+                <label>Рейтинг (1–5)</label>
+                <select name="rating">
+                    <option value="5">★★★★★</option>
+                    <option value="4">★★★★☆</option>
+                    <option value="3">★★★☆☆</option>
+                    <option value="2">★★☆☆☆</option>
+                    <option value="1">★☆☆☆☆</option>
+                </select>
+                <button type="submit">Добавить отзыв</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>Отзывы</h2>
+            <div id="reviews-list"></div>
+        </div>
+
+        <div class="section">
+            <h2>Добавить товар / выставочное объявление</h2>
+            <form id="form-product">
+                <label>Загрузить фото</label>
+                <input type="file" name="image" accept="image/*" required>
+                <p class="note">Выберите изображение с компьютера</p>
+                <label>Название</label>
+                <input type="text" name="title" placeholder="Диски Toyota 17"" required>
+                <label>Описание</label>
+                <textarea name="description" placeholder="Краткое описание товара"></textarea>
+                <label>Цена</label>
+                <input type="text" name="price" placeholder="34 000 ₽ или «по запросу»">
+                <label>Категория</label>
+                <select name="category">
+                    <option value="wheels">Диски</option>
+                    <option value="tires">Шины</option>
+                    <option value="showcase">Выставочное (только картинка в блоке колес)</option>
+                </select>
+                <button type="submit">Добавить</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>Товары и выставочные картинки</h2>
+            <div id="products-list"></div>
+        </div>
+
+        <div class="section">
+            <h2>Экспорт данных</h2>
+            <p class="note">Скопируйте и вставьте в data.js (замените содержимое window.KATANA_DATA)</p>
+            <button onclick="exportData()">Скопировать данные</button>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'katana_data';
+        const ADMIN_KEY = 'katana_admin';
+        const ADMIN_PASS = 'K4t4n4Auto38';
+
+        function checkAuth() {
+            return sessionStorage.getItem(ADMIN_KEY) === '1';
+        }
+
+        function showPanel() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('admin-panel').style.display = 'block';
+        }
+
+        if (checkAuth()) {
+            showPanel();
+        }
+
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pass = document.getElementById('admin-password').value;
+            if (pass === ADMIN_PASS) {
+                sessionStorage.setItem(ADMIN_KEY, '1');
+                document.getElementById('login-error').style.display = 'none';
+                showPanel();
+            } else {
+                document.getElementById('login-error').style.display = 'block';
+            }
+        });
+
+        document.getElementById('logout-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            sessionStorage.removeItem(ADMIN_KEY);
+            location.reload();
+        });
+
+        function loadData() {
+            if (typeof window.KATANA_DATA !== 'undefined') {
+                return window.KATANA_DATA;
+            }
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                return stored ? JSON.parse(stored) : getDefaultData();
+            } catch {
+                return getDefaultData();
+            }
+        }
+
+        function getDefaultData() {
+            return {
+                logo: null,
+                heroBackground: null,
+                reviews: [
+                    { id: 1, text: 'Отличный сервис! Заказал диски на Honda — пришли идеально упакованные.', author: 'Клиент с Drom.ru', rating: 5 },
+                    { id: 2, text: 'Шины made in Japan — реально качество другое.', author: 'Клиент с Drom.ru', rating: 5 }
+                ],
+                products: [],
+                wheelShowcase: []
+            };
+        }
+
+        function saveData(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        function renderReviews() {
+            const data = loadData();
+            const list = document.getElementById('reviews-list');
+            list.innerHTML = data.reviews.map(r => `
+                <div class="item">
+                    <div class="item-info">
+                        <div>${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+                        <div>${r.text}</div>
+                        <div style="font-size:0.85rem;color:#94a3b8">— ${r.author}</div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="btn-secondary" onclick="deleteReview(${r.id})">Удалить</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderProducts() {
+            const data = loadData();
+            const all = [...data.products, ...data.wheelShowcase.map((w,i) => ({...w, id: 'w'+i, isShowcase: true }))];
+            const list = document.getElementById('products-list');
+            if (all.length === 0) {
+                list.innerHTML = '<p class="note">Нет товаров. Добавьте через форму выше.</p>';
+                return;
+            }
+            list.innerHTML = all.map(p => `
+                <div class="item">
+                    <img src="${p.image}" alt="" class="preview-img" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2260%22 height=%2260%22><rect fill=%22%23334%22 width=%2260%22 height=%2260%22/><text x=%2230%22 y=%2235%22 fill=%22%23999%22 font-size=%2212%22 text-anchor=%22middle%22>?</text></svg>'">
+                    <div class="item-info" style="flex:1">
+                        <div><strong>${p.title}</strong> ${p.isShowcase ? '(выставочное)' : ''}</div>
+                        <div style="font-size:0.9rem">${p.description || ''} ${p.price ? '· ' + p.price : ''}</div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="btn-secondary" onclick="deleteProduct('${p.id}')">Удалить</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function deleteReview(id) {
+            const data = loadData();
+            data.reviews = data.reviews.filter(r => r.id !== id);
+            saveData(data);
+            renderReviews();
+        }
+
+        function deleteProduct(id) {
+            const data = loadData();
+            if (typeof id === 'string' && id.startsWith('w')) {
+                data.wheelShowcase = data.wheelShowcase.filter((_, i) => 'w'+i !== id);
+            } else {
+                data.products = data.products.filter(p => p.id !== id);
+            }
+            saveData(data);
+            renderProducts();
+        }
+
+        document.getElementById('form-logo').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fileInput = this.logo;
+            if (!fileInput.files || !fileInput.files[0]) {
+                alert('Выберите изображение');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function() {
+                const data = loadData();
+                data.logo = reader.result;
+                saveData(data);
+                document.getElementById('logo-status').textContent = 'Логотип установлен! Обновите главную страницу (F5).';
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        });
+
+        document.getElementById('form-hero-bg').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fileInput = this.bg;
+            if (!fileInput.files || !fileInput.files[0]) {
+                alert('Выберите изображение');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function() {
+                const data = loadData();
+                data.heroBackground = reader.result;
+                saveData(data);
+                document.getElementById('hero-bg-status').textContent = 'Фон установлен! Обновите главную страницу (F5).';
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        });
+
+        document.getElementById('form-review').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = loadData();
+            const newId = Math.max(0, ...data.reviews.map(r => r.id)) + 1;
+            data.reviews.push({
+                id: newId,
+                text: this.text.value,
+                author: this.author.value,
+                rating: parseInt(this.rating.value)
+            });
+            saveData(data);
+            renderReviews();
+            this.reset();
+        });
+
+        document.getElementById('form-product').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fileInput = this.image;
+            if (!fileInput.files || !fileInput.files[0]) {
+                alert('Выберите фото');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function() {
+                const data = loadData();
+                const cat = document.getElementById('form-product').category.value;
+                const form = document.getElementById('form-product');
+                const item = {
+                    id: Date.now(),
+                    image: reader.result,
+                    title: form.title.value,
+                    description: form.description.value,
+                    price: form.price.value || 'по запросу'
+                };
+                if (cat === 'showcase') {
+                    data.wheelShowcase.push(item);
+                } else {
+                    item.category = cat;
+                    data.products.push(item);
+                }
+                saveData(data);
+                renderProducts();
+                form.reset();
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        });
+
+        function exportData() {
+            const data = loadData();
+            const str = 'window.KATANA_DATA = ' + JSON.stringify(data, null, 4) + ';';
+            navigator.clipboard.writeText(str).then(() => alert('Данные скопированы! Вставьте в data.js'));
+        }
+
+        renderReviews();
+        renderProducts();
+    </script>
+</body>
+</html>
